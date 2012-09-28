@@ -1,20 +1,38 @@
 var pollster = require('pollster');
+var title = "2012 PollWatcher";
 
 module.exports = function(app) {
   app.get('/', function(req, res){
     console.log(__dirname)
-    getPollData(function (data) {
-      res.render('index', {
-        title: '2012 PollWatcher',
-        polls: data
+    res.render('index', {
+      title: title
+    });
+  });
+
+  app.post('/', function(req, res){
+    console.log(__dirname)
+    res.redirect('/state/' + req.param('state'));
+  });
+
+  app.get('/state', function(req, res){
+    console.log(__dirname);
+    res.redirect('/');
+  });
+
+  app.get('/state/:name', function(req, res){
+    console.log(__dirname);
+    getPollData({state: req.param('name')}, function (data) {
+      res.render('state', {
+        title: title,
+        polls: data 
       });
     });
   });
 };
 
 // helpers
-var getPollData = function(callback) {
-  pollster.charts({state: 'pa'}, function(resp) {
+var getPollData = function(params, callback) {
+  pollster.charts(params, function(resp) {
     var data = [];
     var respLength = resp.length;
     var i;

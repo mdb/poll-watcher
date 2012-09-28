@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  ul.charts
+    - each chart in polls
+      li.chart
+        h2
+          a(href="#{chart.url}")=chart.title
+        time.pub-date Last updated #{chart.raw_last_updated}
+        ul.estimates
+          - each estimate in chart.estimates
+            li.estimate
+              h3 #{estimate.formatted_name}
+                if estimate.party !== null
+                  , #{estimate.party}
+              div.percent-bar
+                span.percent(class="#{estimate.lower_party}", style="width: #{estimate.integer_value}%")
+                  span.percent-value #{estimate.value}%
