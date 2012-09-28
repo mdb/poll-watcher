@@ -1,0 +1,26 @@
+*{margin:0;padding:0}
+html{font-family:Helvetica,Arial,sans-serif;font-size:62.5%}
+body{font-size:1.2em;background:#efefef}
+a{color:#333;}
+a:hover{text-decoration:underline}
+ul,li{list-style-type:none}
+h1{margin-bottom:5px;font-size:1.4em;}
+h1 a{text-decoration:none}
+p{font-size:1.1em}
+header,.content,footer{width:960px;margin:0 auto}
+header{padding:50px 0 30px 35px}
+footer{padding:20px 0 30px}
+.charts .chart{margin-bottom:20px;padding:20px;border:1px solid #ddd;background:#fff}
+.charts h2{margin-bottom:5px;font-size:1.4em;}
+.charts h2 a{text-decoration:none}
+.charts time{display:block;margin-bottom:10px}
+.estimates .estimate{margin-bottom:15px}
+.estimates h3{margin-bottom:5px}
+.estimates .percent-bar{position:relative;width:100%;height:45px;background:#dfdfdf}
+.estimates .percent{height:45px;display:block;position:absolute;background:#bbb;text-align:right;}
+.estimates .percent.republican{background:#bc5c5c}
+.estimates .percent.democrat{background:#5c6b95}
+.estimates .percent-value{height:45px;line-height:45px;font-weight:bold;padding:0 5px;font-size:1.2em;color:#fff}
+footer ul li{display:inline-block;border-right:1px solid #ddd;padding:0 5px;}
+footer ul li:first-child{padding-left:none}
+footer ul li:last-child{border-right:none}

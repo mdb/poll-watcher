@@ -1,0 +1,106 @@
+@import "_variables"
+
+*
+  margin: 0
+  padding: 0
+
+html
+  font-family: $font_family
+  font-size: $font_size
+
+body
+  font-size: 1.2em
+  background: #efefef
+
+a
+  color: $link_color
+
+  &:hover
+    text-decoration: underline
+
+ul, li
+  list-style-type: none
+
+h1
+  margin-bottom: 5px
+  font-size: 1.4em
+  a
+    text-decoration: none
+
+p
+  font-size: 1.1em
+
+// structure
+header, .content, footer
+  width: $width
+  margin: 0 auto
+
+header
+  padding: 50px 0 30px 35px
+
+footer
+  padding: 20px 0 30px
+
+// charts
+.charts
+  .chart
+    margin-bottom: 20px
+    padding: 20px
+    border: 1px solid #ddd
+    background: #fff
+
+  h2
+    margin-bottom: 5px
+    font-size: 1.4em
+
+    a
+      text-decoration: none
+
+  time
+    display: block
+    margin-bottom: 10px
+
+.estimates
+  .estimate
+    margin-bottom: 15px
+
+  h3
+    margin-bottom: 5px
+
+  .percent-bar
+    position: relative
+    width: 100%
+    height: $bar_height
+    background: #dfdfdf
+    
+  .percent
+    height: $bar_height
+    display: block
+    position: absolute
+    background: #bbb
+    text-align: right
+    
+    &.republican
+      background: $red
+    &.democrat
+      background: $blue
+
+  .percent-value
+    height: $bar_height
+    line-height: $bar_height
+    font-weight: bold
+    padding: 0 5px
+    font-size: 1.2em
+    color: #fff
+
+// footer styles
+footer
+  ul li
+    display: inline-block
+    border-right: 1px solid #ddd
+    padding: 0 5px
+
+    &:first-child
+      padding-left: none
+    &:last-child
+      border-right: none
