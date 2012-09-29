@@ -57,6 +57,14 @@ var getPollData = function(params, callback) {
   });
 };
 
+var order = function(a, b, desc) {
+  return desc ? b.value - a.value : a.value - b.value;
+};
+
+var descendingEstimates = function(a, b) {
+  return order(a, b, true);
+};
+
 var isPrimary = function(chart) {
   var title = chart.title.toLowerCase();
 
@@ -72,7 +80,7 @@ var getFormattedChoices = function(choices) {
     choiceArray.push(getFormattedChoice(choices[i]));
   }
 
-  return choiceArray;
+  return choiceArray.sort(descendingEstimates);
 };
 
 var getFormattedChoice = function(choice) {
