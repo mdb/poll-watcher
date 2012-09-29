@@ -42,7 +42,7 @@ var getPollData = function(params, callback) {
       var choiceLength = resp[i].estimates.length;
       var j;
 
-      if (resp[i].estimates.length > 0) {
+      if (resp[i].estimates.length > 0 && !isPrimary(resp[i])) {
         item.title = resp[i].title;
         item.url = resp[i].url;
         item.raw_last_updated = resp[i].last_updated;
@@ -55,6 +55,12 @@ var getPollData = function(params, callback) {
 
     callback(data);
   });
+};
+
+var isPrimary = function(chart) {
+  var title = chart.title.toLowerCase();
+
+  return title.indexOf('primary') !== -1
 };
 
 var getFormattedChoices = function(choices) {
