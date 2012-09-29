@@ -35,8 +35,14 @@ header, .content, footer
   width: $width
   margin: 0 auto
 
+  @media screen and (max-width: 480px)
+    width: 90%
+
 header
   padding: 50px 0 30px 35px
+
+  @media screen and (max-width: 480px)
+    padding-top: 25px
 
 footer
   padding: 20px 0 30px
