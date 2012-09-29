@@ -6,7 +6,7 @@ block content
       li.chart
         h2
           a(href="#{chart.url}")=chart.title
-        time.pub-date Last updated #{chart.raw_last_updated}
+        time.pub-date Last updated #{chart.formatted_last_updated}
         ul.estimates
           - each estimate in chart.estimates
             li.estimate

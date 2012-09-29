@@ -31,6 +31,18 @@ module.exports = function(app) {
 };
 
 // helpers
+
+var getFormattedDate = function(dateStr) {
+  var date = new Date(dateStr);
+  var month = date.getMonth();
+  var day = date.getDate();
+  var year = date.getFullYear();
+  var hours = date.getHours();
+  var mins = date.getMinutes();
+  
+  return month + '/' + day + '/' + year;// + ' ' + hours + ':' + mins;
+};
+
 var getPollData = function(params, callback) {
   pollster.charts(params, function(resp) {
     var data = [];
@@ -46,7 +58,7 @@ var getPollData = function(params, callback) {
         item.title = resp[i].title;
         item.url = resp[i].url;
         item.raw_last_updated = resp[i].last_updated;
-        item.formatted_last_updated = 'TODO';
+        item.formatted_last_updated = getFormattedDate(item.raw_last_updated);
         item.slug = resp[i].slug;
         item.estimates = getFormattedChoices(resp[i].estimates);
         data.push(item);
