@@ -1,5 +1,6 @@
 var pollster = require('pollster');
 var title = "2012 PollWatcher";
+var states = require('./states');
 
 module.exports = function(app) {
   app.get('/', function(req, res){
@@ -11,7 +12,7 @@ module.exports = function(app) {
 
   app.post('/', function(req, res){
     console.log(__dirname)
-    res.redirect('/state/' + req.param('state'));
+    res.redirect('/state/' + getStateAbbrev(req.param('state')));
   });
 
   app.get('/state', function(req, res){
@@ -31,6 +32,18 @@ module.exports = function(app) {
 };
 
 // helpers
+var getStateAbbrev = function(stateStr) {
+  var state = stateStr.toLowerCase();
+  var statesLength = states.length;
+  var i;
+
+  for (i=0; i<statesLength; i++) {
+    if (state === states[i].name.toLowerCase() || state === states[i].abbr.toLowerCase()) {
+      return states[i].abbr.toLowerCase();
+    }
+  }
+  return false;
+};
 
 var getFormattedDate = function(dateStr) {
   var date = new Date(dateStr);
