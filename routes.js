@@ -6,7 +6,8 @@ module.exports = function(app) {
   app.get('/', function(req, res){
     console.log(__dirname)
     res.render('index', {
-      title: title
+      title: title,
+      states: inThreeChunks(states)
     });
   });
 
@@ -32,6 +33,22 @@ module.exports = function(app) {
 };
 
 // helpers
+var inThreeChunks = function(array) {
+  var splitArr = [];
+  var subListLength = Math.ceil(array.length/3);
+  var i;
+
+  for (i=0; i<subListLength; i++) {
+    var sublist = array.slice(i*subListLength, i*subListLength+subListLength);
+
+    if (sublist.length > 0) {
+      splitArr.push(array.slice(i*subListLength, i*subListLength+subListLength));
+    }
+  }
+  
+  return splitArr;
+};
+
 var getStateAbbrev = function(stateStr) {
   var state = stateStr.toLowerCase();
   var statesLength = states.length;

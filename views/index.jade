@@ -1,6 +1,12 @@
 extends layout
 
 block content
-  form(method="post")
+  //form(method="post")
     input(class="text", type="text", name="state", placeholder="Enter a US state")
     input(class="submit", type="submit", value="View polls")
+  div.container
+    - each list in states
+      ul.states
+        - each state in list
+          li
+            a(href="/state/#{state.abbr.toLowerCase()}")=state.name
