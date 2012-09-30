@@ -1,4 +1,5 @@
 @import "_variables"
+@import "_mixins"
 
 *
   margin: 0
@@ -39,7 +40,7 @@ header, .content, footer
     width: 90%
 
 header
-  padding: 50px 0 30px 35px
+  padding: 50px 0 20px 35px
 
   @media screen and (max-width: 480px)
     padding-top: 25px
@@ -49,9 +50,7 @@ footer
 
 //homepage form
 form
-  border: 1px solid #ddd
-  background: #fff
-  padding: 20px
+  container()
 
   input.text
     height: 30px
@@ -65,14 +64,49 @@ form
     height: 30px
     line-height: 30px
 
+.container
+  container()
+  overflow: hidden
+  @media screen and (max-width: 480px)
+    padding: 0 
+
+//homepage state list
+.states
+  min-height: 400px
+  float: left
+  width: 300px
+  border-right: 1px solid #ddd
+  border-top: 1px solid #ddd
+
+  @media screen and (max-width: 480px)
+    width: 100%  
+    min-height: auto
+    border-top: none
+
+  &:first-child
+    border-left: 1px solid #ddd
+
+  &:last-child
+    @media screen and (max-width: 480px)
+      li:last-child
+        border-bottom: none
+
+  li 
+    border-bottom: 1px solid #ddd
+
+    a
+      font-size: 1.2em
+      text-decoration: none
+      font-weight: bold
+      padding: 10px
+      display: block
+  
 // charts
 .charts
   .chart
     margin-bottom: 20px
-    padding: 20px
-    border: 1px solid #ddd
-    background: #fff
-
+    container()
+  
   h2
     margin-bottom: 5px
     font-size: 1.4em
