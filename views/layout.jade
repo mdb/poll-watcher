@@ -2,15 +2,15 @@ doctype 5
 html
   head
     title= title
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
-
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+   
   body
     header
       h1
         a(href='/')= title
-      p PollWatcher is powered by the Huffington Post's <a href="http://elections.huffingtonpost.com/pollster/api">Pollster API</a> and Casey Thomas's <a href="http://github.com/caseypt/node-pollster">node-pollster</a>.
+      p Browse election polling data by state.
     div.content
       block content
     footer
@@ -20,3 +20,5 @@ html
           <a href="http://mikeball.us">MDB</a>
         li
           a(href="http://github.com/mdb/poll-watcher") Source Code
+        li
+          <span>PollWatcher</span> is powered by the Huffington Post's <a href="http://elections.huffingtonpost.com/pollster/api">Pollster API</a> and Casey Thomas's <a href="http://github.com/caseypt/node-pollster">node-pollster</a>.</li>
