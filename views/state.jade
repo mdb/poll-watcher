@@ -14,5 +14,15 @@ block content
                 if estimate.party !== null
                   , #{estimate.party}
               div.percent-bar
-                span.percent(class="#{estimate.lower_party}", style="width: #{estimate.integer_value}%")
+                span.percent(class="#{estimate.lower_party}", data-value="#{estimate.integer_value}")
                   span.percent-value #{estimate.value}%
+block scripts
+  script
+    $(document).ready(function() {
+      var percentBars = $('span.percent');
+      $(percentBars).each(function () {
+        $(this).animate({
+          width: $(this).attr('data-value') + "%"
+        }, 1000);
+      });
+    });
