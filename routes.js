@@ -27,8 +27,14 @@ module.exports = function(app) {
     helpers.getPollData({state: req.param('name')}, function (data) {
       res.render('state', {
         title: title,
-        polls: data 
+        polls: data,
+        state: helpers.getStateName(req.param('name'))
       });
     });
+  });
+  
+  app.post('/state/:name', function(req, res){
+    console.log(__dirname)
+    res.redirect('/state/' + helpers.getStateAbbrev(req.param('state')));
   });
 };

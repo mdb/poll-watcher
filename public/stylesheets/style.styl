@@ -48,21 +48,35 @@ header
 footer
   padding: 20px 0 30px
 
-//homepage form
+//form
 form
   container()
 
+  p
+    margin-bottom: 20px
+
   input.text
     height: 30px
-    width: 80%
+    line-height: 30px
+    width: 40%
     border: 1px solid #ddd
     line-height: 30px
-    padding: 0 5px
+    padding: 0 10px
     font-size: 1.4em
 
   input.submit
     height: 30px
     line-height: 30px
+    background: #bbb
+    color: #fff
+    padding: 0 10px
+    border: 1px solid #bbb 
+    margin-left: 5px
+    font-style: inherit
+    border-radius: 10px
+
+    &:hover
+      cursor: pointer
 
 .container
   container()
