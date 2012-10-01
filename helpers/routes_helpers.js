@@ -1,4 +1,3 @@
-var states = require('../states');
 var pollster = require('pollster');
 
 // helpers
@@ -16,32 +15,6 @@ exports.inThreeChunks = function(array) {
   }
   
   return splitArr;
-};
-
-exports.getStateAbbrev = function(stateStr) {
-  var state = stateStr.toLowerCase();
-  var statesLength = states.length;
-  var i;
-
-  for (i=0; i<statesLength; i++) {
-    if (state === states[i].name.toLowerCase() || state === states[i].abbr.toLowerCase()) {
-      return states[i].abbr.toLowerCase();
-    }
-  }
-  return false;
-};
-
-exports.getStateName = function(stateStr) {
-  var state = stateStr.toLowerCase();
-  var statesLength = states.length;
-  var i;
-
-  for (i=0; i<statesLength; i++) {
-    if (state === states[i].name.toLowerCase() || state === states[i].abbr.toLowerCase()) {
-      return states[i].name;
-    }
-  }
-  return false;
 };
 
 exports.getFormattedDate = function(dateStr) {
