@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   app.post('/', function(req, res){
     console.log(__dirname)
-    res.redirect('/state/' + madison.getStateAbbrev(req.param('state')));
+    res.redirect('/state/' + helpers.getStatePath(req.param('state')));
   });
 
   app.get('/state', function(req, res){
@@ -28,13 +28,13 @@ module.exports = function(app) {
       res.render('state', {
         title: title,
         polls: data,
-        state: madison.getStateName(req.param('name'))
+        state: typeof madison.getStateName(req.param('name')) !== 'undefined' ?  madison.getStateName(req.param('name')) : 'invalid state' 
       });
     });
   });
   
   app.post('/state/:name', function(req, res){
     console.log(__dirname)
-    res.redirect('/state/' + madison.getStateAbbrev(req.param('state')));
+    res.redirect('/state/' + helpers.getStatePath(req.param('state')));
   });
 };

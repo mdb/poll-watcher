@@ -1,6 +1,19 @@
 var pollster = require('pollster');
+var madison = require('madison');
 
 // helpers
+exports.getStatePath = function(stateNameOrAbbrev) {
+  var statePath;
+
+  if (stateNameOrAbbrev.length === 2) {
+    statePath = stateNameOrAbbrev.toLowerCase();
+  } else {
+    statePath = typeof madison.getStateAbbrev(stateNameOrAbbrev) !== 'undefined' ? madison.getStateAbbrev(stateNameOrAbbrev).toLowerCase() : undefined;
+  }
+
+  return statePath;
+};
+
 exports.inThreeChunks = function(array) {
   var splitArr = [];
   var subListLength = Math.ceil(array.length/3);
