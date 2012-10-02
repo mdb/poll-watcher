@@ -2,6 +2,32 @@ var pollster = require('pollster');
 var madison = require('madison');
 
 // helpers
+exports.getPollData = function(params, callback) {
+  pollster.charts(params, function(resp) {
+    var data = [];
+    var respLength = resp.length;
+    var i;
+
+    for (i=0; i<respLength; i++) {
+      var item = {};
+      var choiceLength = resp[i].estimates.length;
+      var j;
+
+      if (resp[i].estimates.length > 0 && !isPrimary(resp[i])) {
+        item.title = resp[i].title;
+        item.url = resp[i].url;
+        item.raw_last_updated = resp[i].last_updated;
+        item.formatted_last_updated = getFormattedDate(item.raw_last_updated);
+        item.slug = resp[i].slug;
+        item.estimates = getFormattedChoices(resp[i].estimates);
+        data.push(item);
+      }
+    }
+
+    callback(data);
+  });
+};
+
 exports.getStatePath = function(stateNameOrAbbrev) {
   var statePath;
 
@@ -30,7 +56,8 @@ exports.inThreeChunks = function(array) {
   return splitArr;
 };
 
-exports.getFormattedDate = function(dateStr) {
+// private helpers
+function getFormattedDate(dateStr) {
   var date = new Date(dateStr);
   var month = date.getMonth();
   var day = date.getDate();
@@ -39,73 +66,47 @@ exports.getFormattedDate = function(dateStr) {
   var mins = date.getMinutes();
   
   return month + '/' + day + '/' + year;// + ' ' + hours + ':' + mins;
-};
+}
 
-exports.getPollData = function(params, callback) {
-  pollster.charts(params, function(resp) {
-    var data = [];
-    var respLength = resp.length;
-    var i;
-
-    for (i=0; i<respLength; i++) {
-      var item = {};
-      var choiceLength = resp[i].estimates.length;
-      var j;
-
-      if (resp[i].estimates.length > 0 && !exports.isPrimary(resp[i])) {
-        item.title = resp[i].title;
-        item.url = resp[i].url;
-        item.raw_last_updated = resp[i].last_updated;
-        item.formatted_last_updated = exports.getFormattedDate(item.raw_last_updated);
-        item.slug = resp[i].slug;
-        item.estimates = exports.getFormattedChoices(resp[i].estimates);
-        data.push(item);
-      }
-    }
-
-    callback(data);
-  });
-};
-
-exports.order = function(a, b, desc) {
+function order(a, b, desc) {
   return desc ? b.value - a.value : a.value - b.value;
-};
+}
 
-exports.descendingEstimates = function(a, b) {
-  return exports.order(a, b, true);
-};
+function descendingEstimates(a, b) {
+  return order(a, b, true);
+}
 
-exports.isPrimary = function(chart) {
+function isPrimary(chart) {
   var title = chart.title.toLowerCase();
 
   return title.indexOf('primary') !== -1
-};
+}
 
-exports.getFormattedChoices = function(choices) {
+function getFormattedChoices(choices) {
   var i;
   var choiceLength = choices.length;
   var choiceArray = [];
   
   for (i=0; i<choiceLength; i++) {
-    choiceArray.push(exports.getFormattedChoice(choices[i]));
+    choiceArray.push(getFormattedChoice(choices[i]));
   }
 
-  return choiceArray.sort(exports.descendingEstimates);
-};
+  return choiceArray.sort(descendingEstimates);
+}
 
-exports.getFormattedChoice = function(choice) {
+function getFormattedChoice(choice) {
   var choiceObj = {};
 
-  choiceObj.formatted_name = exports.getFormattedName(choice);
+  choiceObj.formatted_name = getFormattedName(choice);
   choiceObj.value = choice.value;
   choiceObj.integer_value = Math.ceil(choice.value);
-  choiceObj.party = exports.getFormattedParty(choice.party);
+  choiceObj.party = getFormattedParty(choice.party);
   choiceObj.lower_party = choiceObj.party !== null ? choiceObj.party.toLowerCase() : 'null';
 
   return choiceObj;
-};
+}
 
-exports.getFormattedParty = function(party) {
+function getFormattedParty(party) {
   var partyName;
   var lowerParty = party !== null ? party.toLowerCase() : '';
 
@@ -118,9 +119,9 @@ exports.getFormattedParty = function(party) {
   }
 
   return partyName;
-};
+}
 
-exports.getFormattedName = function(choice) {
+function getFormattedName(choice) {
   var formattedName;
 
   if (choice.first_name && choice.last_name) {
@@ -130,4 +131,4 @@ exports.getFormattedName = function(choice) {
   }
 
   return formattedName;
-};
+}
