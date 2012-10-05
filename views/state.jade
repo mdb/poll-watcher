@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  if polls.length
+  if charts.length
     ul.charts
-      - each chart in polls
+      - each chart in charts 
         li.chart
           h2
             a(href="#{chart.url}")=chart.title

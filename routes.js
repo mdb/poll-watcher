@@ -27,7 +27,7 @@ module.exports = function(app) {
     helpers.getPollData({state: req.param('name')}, function (data) {
       res.render('state', {
         title: title,
-        polls: data,
+        charts: data,
         state: typeof madison.getStateName(req.param('name')) !== 'undefined' ?  madison.getStateName(req.param('name')) : 'invalid state' 
       });
     });
