@@ -24,7 +24,7 @@ module.exports = function(app) {
 
   app.get('/state/:name', function(req, res){
     console.log(__dirname);
-    helpers.getPollData({state: req.param('name')}, function (data) {
+    helpers.getChartData({state: req.param('name')}, function (data) {
       res.render('state', {
         title: title,
         charts: data,

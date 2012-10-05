@@ -2,7 +2,7 @@ var pollster = require('pollster');
 var madison = require('madison');
 
 // helpers
-exports.getPollData = function(params, callback) {
+exports.getChartData = function(params, callback) {
   pollster.charts(params, function(resp) {
     var data = [];
     var respLength = resp.length;
