@@ -7,10 +7,25 @@ ul,li{list-style-type:none}
 h1{margin-bottom:5px;font-size:1.4em;}
 h1 a{text-decoration:none}
 p{font-size:1.1em}
-header,.content,footer{width:960px;margin:0 auto}
-header{padding:50px 0 30px 35px}
-footer{padding:20px 0 30px}
-.charts .chart{margin-bottom:20px;padding:20px;border:1px solid #ddd;background:#fff}
+header,.content,footer{width:960px;margin:0 auto;}
+@media screen and (max-width: 480px){header,.content,footer{width:90%}
+}header{padding:50px 0 20px 35px;}
+@media screen and (max-width: 480px){header{padding-top:25px}
+}footer{padding:20px 0 30px}
+form{border:1px solid #ddd;background:#fff;padding:20px;}
+form p{margin-bottom:20px}
+form input.text{height:30px;line-height:30px;width:40%;border:1px solid #ddd;line-height:30px;padding:0 10px;font-size:1.4em}
+form input.submit{height:30px;line-height:30px;background:#bbb;color:#fff;padding:0 10px;border:1px solid #bbb;margin-left:5px;font-style:inherit;border-radius:10px;}
+form input.submit:hover{cursor:pointer}
+.container{border:1px solid #ddd;background:#fff;padding:20px;overflow:hidden;}
+@media screen and (max-width: 480px){.container{padding:0}
+}.states{min-height:400px;float:left;width:300px;border-right:1px solid #ddd;border-top:1px solid #ddd;}
+@media screen and (max-width: 480px){.states{width:100%;min-height:auto;border-top:none}
+}.states:first-child{border-left:1px solid #ddd}
+@media screen and (max-width: 480px){.states:last-child li:last-child{border-bottom:none}
+}.states li{border-bottom:1px solid #ddd;}
+.states li a{font-size:1.2em;text-decoration:none;font-weight:bold;padding:10px;display:block}
+.charts .chart{margin-bottom:20px;border:1px solid #ddd;background:#fff;padding:20px}
 .charts h2{margin-bottom:5px;font-size:1.4em;}
 .charts h2 a{text-decoration:none}
 .charts time{display:block;margin-bottom:10px}

@@ -3,6 +3,7 @@ var express = require('express'),
   http = require('http'),
   fs = require('fs'),
   url = require('url'),
+  pjax = require('express-pjax'),
   pollster = require('pollster');
 
 var port = process.env.PORT || 4000;
@@ -14,6 +15,7 @@ console.log('Express server listening on port ' + port);
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(pjax());
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
