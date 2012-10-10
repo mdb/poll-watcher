@@ -25,14 +25,14 @@ module.exports = function(app) {
   app.get('/state/:name', function(req, res){
     console.log(__dirname);
     helpers.getChartData({state: req.param('name')}, function (data) {
-      res.render('state', {
+      res.renderPjax('state', {
         title: title,
         charts: data,
-        state: typeof madison.getStateName(req.param('name')) !== 'undefined' ?  madison.getStateName(req.param('name')) : 'invalid state' 
+        state: typeof madison.getStateName(req.param('name')) !== 'undefined' ?  madison.getStateName(req.param('name')) : 'invalid state'
       });
     });
   });
-  
+
   app.post('/state/:name', function(req, res){
     console.log(__dirname)
     res.redirect('/state/' + helpers.getStatePath(req.param('state')));

@@ -12,6 +12,7 @@
     "stylus": "0.28.x",
     "jade": "*",
     "madison": "0.0.3",
-    "pollster": "*"
+    "pollster": "*",
+    "express-pjax": "*"
   }
 }

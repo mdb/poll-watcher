@@ -3,7 +3,7 @@ extends layout
 block content
   if charts.length
     ul.charts
-      - each chart in charts 
+      - each chart in charts
         li.chart
           h2
             a(href="#{chart.url}")=chart.title
@@ -22,7 +22,7 @@ block content
       p Sorry, there is no polling data available for #{state}.
       input(class="text", type="text", name="state", placeholder="Try another US state")
       input(class="submit", type="submit", value="View polls")
-block scripts
+
   script
     $(document).ready(function() {
       var percentBars = $('span.percent');
